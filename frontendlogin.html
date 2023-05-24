@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>COP 4331 small Project</title>
+	<script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	
+	<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() 
+	{
+		readCookie();
+	}, false);
+	</script>
+	
+</head>
+<body>
+
+<h1 id="title">COP 4331 small Project</h1>
+
+<div id="loggedInDiv">
+	<span id="userName"></span><br />
+	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
+</div>
+
+<div id="accessUIDiv">
+	<br />
+
+    <input type="text" id="emailText" placeholder="Email"/>
+    <input type="text" id="passwordText" placeholder="password"/>
+	<button type="button" id="searchColorButton" class="buttons" onclick="searchColor();"> Login </button><br />
+	<span id="colorSearchResult"></span>
+	<p id="colorList">
+    </p><br /><br />
+    
+    <input type="text" id="emailText" placeholder="Email"/>
+    <input type="text" id="passwordText" placeholder="password"/>
+    <input type="text" id="phoneText" placeholder="Phone Number"/>
+    <input type="text" id="nameText" placeholder="Name"/>
+    
+	<button type="button" id="registerButton" class="buttons" onclick="addColor();"> register </button><br />
+	<span id="colorAddResult"></span>
+</div>
+
+</body>
+</html>
