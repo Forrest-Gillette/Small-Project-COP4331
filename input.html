@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>COP 4331 Small Project</title>
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+</head>
+<style>
+body
+	{
+		background-image: url("https://www.cs.ucf.edu/wp-content/uploads/2022/04/Richard-Leinecker622edit-scaled.jpg");
+        /* background-position: top right; */
+        background-size: cover;
+	}
+#loginDiv
+{
+	border-style: solid;
+	text-align: center;
+	background-color: rgba(233,130,26,1.0);
+	border-color: rgba(252,236,13,1.0);
+	margin-left: 620px;
+	margin-right: 620px;
+	margin-bottom: 50px;
+	color: rgba(252,236,13,1.0);
+}
+</style>
+<body>
+
+<h1 id="title">COP 4331 Small Project</h1>
+
+<!-- this dive ensures the login div is smack dab in the middle of the web page -->
+<div id="whiteSpace">
+	<br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br />
+</div>
+
+<div id="loginDiv">
+	<!-- <span id="inner-title">PLEASE LOG IN</span> -->
+	<br />
+	<input type="text" id="loginName" placeholder="Username" /><br /><br />
+	<input type="password" id="loginPassword" placeholder="Password"/><br /><br />
+	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> login </button>
+	<br /><br />
+	<output type="text" class="text"> Don't have an acount?</output>
+	<button type="button" id="registerButton" class="buttons" onclick="doRegister();"> register </button><br />
+	<span id="loginResult"></span>
+	<br />
+</div>
+
+</body>
+</html>
