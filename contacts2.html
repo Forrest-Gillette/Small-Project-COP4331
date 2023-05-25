@@ -1,0 +1,70 @@
+<html>
+<head>
+	<title>COP 4331 small Project</title>
+	<script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	
+	<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() 
+	{
+		readCookie();
+	}, false);
+	</script>
+	
+</head>
+<style>
+    #registerUIDiv
+    {
+        border-style: solid;
+        text-align: center;
+        margin-left: 620px;
+        margin-right: 620px;
+    }
+    #accessUIDiv
+    {
+        border-style: solid;
+        text-align: center;
+        margin-left: 620px;
+        margin-right: 620px;
+        margin-bottom: 50px;
+    }
+</style>
+<body>
+
+<h1 id="title">COP 4331 small Project</h1>
+
+<div id="loggedInDiv">
+	<span id="userName"></span><br />
+	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
+</div>
+
+<div id="accessUIDiv">
+	<br />
+
+    <input type="text" id="nameText" placeholder="Name to Search"/>
+    <br /><br />
+	<button type="button" id="searchContactButton" class="buttons" onclick="ContactSearch();"> Search </button><br />
+	<span id="ContactSearchResult"></span>
+	<p id="contactList">
+    </p>
+    <br />
+</div>
+
+
+<div id="registerUIDiv">
+    <br />
+	<input type="text" id="nameText" placeholder="Name"/>
+    <br /><br />
+	<input type="text" id="phoneText" placeholder="Phone Number"/>
+    <br /><br />
+    <input type="text" id="emailText" placeholder="Email"/>
+    <br /><br />
+    
+	<button type="button" id="createButton" class="buttons" onclick="ContactCreate();"> register </button><br />
+	<span id="ContactCreateResult"></span>
+    <br />
+</div>
+
+</body>
+</html>
