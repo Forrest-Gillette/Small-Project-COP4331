@@ -1,52 +1,63 @@
+<!DOCTYPE html>
+
 <html>
 <head>
-	<title>COP 4331 Small Project</title>
-	<script type="text/javascript" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <title>Group 13 LAMP Stack Demo</title>
+        <script type = "text/javascript" src = "js/md5.js"></script>
+        <script type = "text/javascript" src = "js/code.js"></script>
+
+    <link href ="css/styles.css" rel="stylesheet">
+    <link href ="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 <style>
-body
-	{
-		background-image: url("https://www.cs.ucf.edu/wp-content/uploads/2022/04/Richard-Leinecker622edit-scaled.jpg");
-        /* background-position: top right; */
+    body
+    {
+        background-image: url("https://img.freepik.com/free-vector/zigzag-lines-pattern-black-background_1017-37483.jpg");
         background-size: cover;
-	}
-#loginDiv
-{
-	border-style: solid;
-	text-align: center;
-	background-color: rgba(233,130,26,1.0);
-	border-color: rgba(252,236,13,1.0);
-	margin-left: 620px;
-	margin-right: 620px;
-	margin-bottom: 50px;
-	color: rgba(252,236,13,1.0);
-}
+    }
 </style>
 <body>
+<hl id="title">COP 4331 LAMP Stack Demo</hl>
+    <div class = "form-box">
+        <div class = "button-box">
+            <div id = "btn"></div>
+            <button type="button" class="toggle-btn" onclick="loginShift()">Log In</button>
+            <button type="button" class="toggle-btn"onclick="registerShift()">Register</button>
+        </div>
+        <form id ="loginForm" class="input-group">
+        <input type = "text" id ="loginName" class="input-field" placeholder="User ID" required>
+        <input type = "text" id ="loginPassword" class="input-field" placeholder="Password" required>
+        <button type = "button" id="loginButton" class = "buttons" onclick="doLogin();">Login</button>
+        </form>
+        <form id ="registerForm" class="input-group">
+            <input type = "text" class="input-field" placeholder="First Name" required>
+            <input type = "text" class="input-field" placeholder="Last Name" required>
+            <input type = "text" class="input-field" placeholder="User ID" required>
+            <input type = "text" class="input-field" placeholder="Password" required>
+            <button type = "button" id="registerButton" class = "buttons" onclick="doRegister();">Register</button>
+            <span id="loginResult"></span>
+            <br />
+    </div>
 
-<h1 id="title">COP 4331 Small Project</h1>
+    <script>
+        var x = document.getElementById("loginForm")
+        var y = document.getElementById("registerForm")
+        var z = document.getElementById("btn")
 
-<!-- this dive ensures the login div is smack dab in the middle of the web page -->
-<div id="whiteSpace">
-	<br /><br /><br /><br /><br /><br />
-	<br /><br /><br /><br /><br /><br />
-</div>
+        function registerShift()
+        {
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px"
+        }
 
-<div id="loginDiv">
-	<!-- <span id="inner-title">PLEASE LOG IN</span> -->
-	<br />
-	<input type="text" id="loginName" placeholder="Username" /><br /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br /><br />
-	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> login </button>
-	<br /><br />
-	<output type="text" class="text"> Don't have an acount?</output>
-	<button type="button" id="registerButton" class="buttons" onclick="doRegister();"> register </button><br />
-	<span id="loginResult"></span>
-	<br />
-</div>
-
+        function loginShift()
+        {
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left =  "0px"
+        }
+    </script>
 </body>
+
 </html>
