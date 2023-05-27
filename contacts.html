@@ -1,80 +1,114 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<title>COP 4331 small Project</title>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	
-	<script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function() 
-	{
-		readCookie();
-	}, false);
-	</script>
-	
-</head>
-<style>
-	body
-	{
-		background-image: url("https://www.cs.ucf.edu/wp-content/uploads/2022/04/Richard-Leinecker622edit-scaled.jpg");
-        /* background-position: top right; */
-        background-size: cover;
-	}
-    #registerUIDiv
-    {
-        border-style: solid;
-        background-color: rgba(233,130,26,1.0);
-        border-color: rgba(252,236,13,1.0);
-        text-align: center;
-        margin-left: 620px;
-        margin-right: 620px;
-    }
-    #accessUIDiv
-    {
-        border-style: solid;
-        text-align: center;
-        background-color: rgba(233,130,26,1.0);
-        border-color: rgba(252,236,13,1.0);
-        margin-left: 620px;
-        margin-right: 620px;
-        margin-bottom: 50px;
-    }
-</style>
-<body>
+    <head>
+        <title>COP 4331 small Project</title>
+        <script type = "text/javascript" src = "js/md5.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type = "text/javascript" src = "js/code.js"></script>
+        
+        <!-- The style is coded into this web page, don't uncomment line 10 as it will cause style clash -->
+        <!-- <link href ="css/styles.css" rel="stylesheet"> -->
+        <link href ="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() 
+            {
+                readCookie();
+            }, false);
+        </script>
+        <style>
+            body
+            {
+                background-image: url("https://img.freepik.com/free-vector/zigzag-lines-pattern-black-background_1017-37483.jpg");
+                background-size: cover;
+            }
+            .tab-bar
+            {
+                overflow: hidden;
+                border:1px solid #ffffff;
+                background-color: #f1f1f1;
+            }
 
-<h1 id="title">COP 4331 small Project</h1>
+            .tab-bar button
+            {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
 
-<div id="loggedInDiv">
-	<span id="userName"></span><br />
-	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
-</div>
+            .tab-bar button:hover
+            {
+                background-color: #ddd;
+            }
 
-<div id="accessUIDiv">
-	<br />
+            .tab-bar button.active
+            {
+                background-color: #ccc;
+            }
 
-    <input type="text" id="nameText" placeholder="Name to Search"/>
-    <br /><br />
-	<button type="button" id="searchContactButton" class="buttons" onclick="ContactSearch();"> Search </button><br />
-	<span id="ContactSearchResult"></span>
-	<p id="contactList">
-    </p>
-    <br />
-</div>
+            .tab-content
+            {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+        </style>
+        <body>
+            <!-- tabs header -->
+            <div class="tab-bar">
+                <button class="tab-buttons" onclick="openTab('Home')">Home</button>
+                <button class="tab-buttons" onclick="openTab('Contacts')">Contacts</button>
+                <button class="tab-buttons" onclick="openTab('About')">About</button>
+                <button class="tab-buttons" onclick="doLogout()">Log Out</button> 
+            </div>
 
+            <!-- tab contents -->
+            <div id="Home" class="tab-content">
+                <input type = "text" id ="Searchinput" class="input-field" placeholder="search" required>
+                <button type = "button" id="searchButton" class = "buttons" onclick="ContactSearch();">Search</button>
+                <script>
+                    var enter = document.getElementById("Searchinput");
+                    enter.addEventListener("keypress", function(event)
+                    {
+                        if (event.key == "Enter")
+                        {
+                            event.preventDefault();
+                            document.getElementById("loginButton").click();
+                        }
+                    });
+                </script>
+            </div>
 
-<div id="registerUIDiv">
-    <br />
-	<input type="text" id="nameCreateText" placeholder="Name"/>
-    <br /><br />
-	<input type="text" id="phoneCreateText" placeholder="Phone Number"/>
-    <br /><br />
-    <input type="text" id="emailCreateText" placeholder="Email"/>
-    <br /><br />
-    
-	<button type="button" id="createButton" class="buttons" onclick="ContactCreate();"> register </button><br />
-	<span id="ContactCreateResult"></span>
-    <br />
-</div>
+            <div id="Contacts" class="tab-content" style="display:none">
+                <input type = "text" class="rg-input-field" placeholder="First Name" required><br />
+                <input type = "text" class="rg-input-field" placeholder="Last Name" required><br />
+                <input type = "text" class="rg-input-field" placeholder="Phone number" required><br />
+                <input type = "text" class="rg-input-field" placeholder="email" required><br />
+                <button type = "button" id="registerButton" class = "buttons" onclick="ContactCreate();">create contact</button>
+            </div>
 
-</body>
-</html>
+            <div id="About" class="tab-content" style="display:none">
+                <p>Test2</p>
+            </div>
+            <!-- <div id="home" class="tab-content"></div> -->
+
+            <script>
+                function openTab(tabName)
+                {
+                    var i;
+                    var x = document.getElementsByClassName("tab-content");
+                    for (i = 0; i < x.length; i++)
+                    {
+                        x[i].style.display = "none";
+                    }
+                    document.getElementById(tabName).style.display = "block";
+                }
+
+            </script>
+
+        </body>
