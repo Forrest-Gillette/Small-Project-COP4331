@@ -139,6 +139,39 @@ function addColor()
 	
 }
 
+function ContactCreate()
+{
+	let newContactName = document.getElementById("nameCreateText").value;
+	let newContactPhone = document.getElementById("phoneCreateText").value;
+	let newContactEmail = document.getElementById("emailCreateText").value;
+	document.getElementById("ContactCreateResult").innerHTML = "";
+
+	let tmp = {Name:newContactName, Phone:newContactPhone, Email:newContactEmail, UserID:userId};
+	let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/ContactCreate.' + extension;
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("ContactCreateResult").innerHTML = "Contact has been added";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("ContactCreateResult").innerHTML = err.message;
+	}
+	
+}
+
 function ContactSearch()
 {
 	let srch = document.getElementById("nameText").value;
