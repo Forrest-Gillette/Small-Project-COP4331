@@ -261,23 +261,27 @@ function ContactSearch()
 }
 
 function ContactDelete(contactId) {
-  let tmp = { contactId: contactId };
-  let jsonPayload = JSON.stringify(tmp);
+  let data = { contactId: contactId };
+  let jsonPayload = JSON.stringify(data);
 
   let url = urlBase + '/ContactDelete.' + extension;
 
   let xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  try {
-    xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("ContactSearchResult").innerHTML = "Contact has been deleted";
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        let response = JSON.parse(xhr.responseText);
+        if (response.error === "") {
+          document.getElementById("ContactSearchResult").innerHTML = "Contact has been deleted";
+        } else {
+          document.getElementById("ContactSearchResult").innerHTML = response.error;
+        }
+      } else {
+        document.getElementById("ContactSearchResult").innerHTML = "Error: " + xhr.status;
       }
-    };
-    xhr.send(jsonPayload);
-  } catch (err) {
-    document.getElementById("ContactSearchResult").innerHTML = err.message;
-  }
-  location.reload();
+    }
+  };
+  xhr.send(jsonPayload);
 }
