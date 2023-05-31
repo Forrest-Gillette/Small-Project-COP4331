@@ -2,14 +2,15 @@
 
 <!DOCTYPE html>
 <html>
+
+    <!-- .js and .css imports -->
     <head>
         <title>COP 4331 small Project</title>
+
         <script type = "text/javascript" src = "js/md5.js"></script>
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
         <script type = "text/javascript" src = "js/code.js"></script>
-        
-        <!-- The style is coded into this web page, don't uncomment line 10 as it will cause style clash -->
-        <!-- <link href ="css/styles.css" rel="stylesheet"> -->
+
+        <link href ="css/contactsStyle.css" rel="stylesheet">
         <link href ="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
         
         <script type="text/javascript">
@@ -18,117 +19,75 @@
                 readCookie();
             }, false);
         </script>
-        <style>
-            body
-            {
-                background-image: url("https://img.freepik.com/free-vector/zigzag-lines-pattern-black-background_1017-37483.jpg");
-                background-size: cover;
-            }
-            .tab-bar
-            {
-                overflow: hidden;
-                border:1px solid #ffffff;
-                background-color: #f1f1f1;
-            }
+    </head>
+    
+    <body>
 
-            .tab-bar button
-            {
-                background-color: inherit;
-                float: left;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                padding: 14px 16px;
-                transition: 0.3s;
-            }
-
-            .tab-bar button:hover
-            {
-                background-color: #ddd;
-            }
-
-            .tab-bar button.active
-            {
-                background-color: #ccc;
-            }
-
-            .tab-content
-            {
-                display: none;
-                padding: 6px 12px;
-                border: 1px solid #ccc;
-                border-top: none;
-                background-color: #ccc;
-            }
-            .header
-            {
-                /* TODO: style the header of the website here */
-                background-color: #ccc;
-            }
-        </style>
-        <body>
-
-            <div class="header">
+        <!-- The Header -->
+        <div class="header">
                 <span id="userName"></span><br />
-            </div>
-            <!-- tabs header -->
-            <div class="tab-bar">
-                <button class="tab-buttons" onclick="openTab('Home')">Home</button>
-                <button class="tab-buttons" onclick="openTab('Contacts')">Add Contacts</button>
-                <button class="tab-buttons" onclick="openTab('About')">About</button>
-                <button class="tab-buttons" onclick="doLogout()">Log Out</button> 
-            </div>
+        </div>
 
-            <!-- tab contents -->
-            <div id="Home" class="tab-content">
-                <input type = "text" id ="nameText" class="input-field" placeholder="search" required>
-                <button type = "button" id="searchContactButton" class = "buttons" onclick="ContactSearch();">Search</button>
-                <span id="ContactSearchResult"></span>
-                <p id="contactList"></p>
-                <script>
-                    var enter = document.getElementById("nameText");
-                    enter.addEventListener("keypress", function(event)
-                    {
-                        if (event.key == "Enter")
-                        {
-                            event.preventDefault();
-                            document.getElementById("searchContactButton").click();
-                        }
-                    });
-                </script>
-            </div>
+        <!-- The Tab Bar -->
+        <div class="tab-bar">
+            <button id="default" class="tab-buttons" onclick="openTab('Home')">Home</button>
+            <button class="tab-buttons" onclick="openTab('Contacts')">Add Contacts</button>
+            <button class="tab-buttons" onclick="openTab('About')">About</button>
+            <button class="tab-buttons" onclick="doLogout()">Log Out</button> 
+        </div>
 
-            <div id="Contacts" class="tab-content" style="display:none">
-                <div >
-                    <!-- TODO: Add list of contacts  -->
-                </div>
-                <div id="newContact">
-                    <span id="ContactCreateResult"></span><br />
-                    <input type = "text" id="nameCreateText" class="rg-input-field" placeholder="Name" required><br />
-                    <input type = "text" id="phoneCreateText" class="rg-input-field" placeholder="Phone number" required><br />
-                    <input type = "text" id="emailCreateText" class="rg-input-field" placeholder="email" required><br />
-                    <button type = "button" id="createButton" class = "buttons" onclick="ContactCreate();">create contact</button>
-                
-                </div>
-            </div>
-
-            <div id="About" class="tab-content" style="display:none">
-                <p>Test2</p>
-            </div>
-            <!-- <div id="home" class="tab-content"></div> -->
+        <!-- The Home Tab -->
+        <div id="Home" class="tab-content">
+            <input type = "text" id ="nameText" class="input-field" placeholder="search" required>
+            <button type = "button" id="searchContactButton" class = "buttons" onclick="ContactSearch();">Search</button>
+            <p><div id="ContactSearchResult"></div></p>
+            
 
             <script>
-                function openTab(tabName)
+                var enter = document.getElementById("nameText");
+                enter.addEventListener("keypress", function(event)
                 {
-                    var i;
-                    var x = document.getElementsByClassName("tab-content");
-                    for (i = 0; i < x.length; i++)
+                    if (event.key == "Enter")
                     {
-                        x[i].style.display = "none";
+                        event.preventDefault();
+                        document.getElementById("searchContactButton").click();
                     }
-                    document.getElementById(tabName).style.display = "block";
-                }
-
+                });
             </script>
+        </div>
 
-        </body>
+        <!-- The Contacts Tab -->
+        <div id="Contacts" class="tab-content" style="display:none">
+            <div id="newContact">
+                <span id="ContactCreateResult"></span><br />
+                <input type = "text" id="nameCreateText" class="rg-input-field" placeholder="Name" required><br />
+                <input type = "text" id="phoneCreateText" class="rg-input-field" placeholder="Phone number" required><br />
+                <input type = "text" id="emailCreateText" class="rg-input-field" placeholder="email" required><br />
+                <button type = "button" id="createButton" class = "buttons" onclick="ContactCreate();">create contact</button>    
+            </div>
+        </div>
+
+        <!-- The About Tab -->
+        <div id="About" class="tab-content" style="display:none">
+            <!-- <p>Test2</p> -->
+        </div>
+
+        <!-- The Script for the Tabs -->
+        <!-- <div id="home" class="tab-content"></div> -->
+        <script>
+            function openTab(tabName)
+            {
+                var i;
+                var x = document.getElementsByClassName("tab-content");
+                for (i = 0; i < x.length; i++)
+                {
+                    x[i].style.display = "none";
+                }
+                document.getElementById(tabName).style.display = "block";
+            }
+            document.getElementById("default").click();
+        </script>
+
+    </body>
+
+</html>
