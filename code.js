@@ -242,12 +242,12 @@ function ContactSearch()
   					contactList += 
 					"<button class='delete-btn' data-contact-id='" + contact.ID + "' onClick='ContactDelete(" + contact.ID + ")'>Delete</button>"
 					+ "</td>" + "</tr><br>";
-
-  					if (i < jsonObject.results.length - 1)
-					{
-    					contactList += "</table><br />\r\n";
-  					}
+  					// if (i < jsonObject.results.length - 1)
+					// {
+    				// 	contactList += "</table><br />\r\n";
+  					// }
 				}
+					contactList += "</table>";
 
 				document.getElementsByTagName("p")[0].innerHTML = contactList;
 			}
