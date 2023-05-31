@@ -266,11 +266,11 @@ function ContactDelete(contactId) {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("ContactDeleteResult").innerHTML = "Contact has been deleted";
+        document.getElementById("ContactSearchResult").innerHTML = "Contact has been deleted";
       }
     };
     xhr.send(jsonPayload);
   } catch (err) {
-    document.getElementById("ContactDeleteResult").innerHTML = err.message;
+    document.getElementById("ContactSearchResult").innerHTML = err.message;
   }
 }
