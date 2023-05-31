@@ -95,7 +95,7 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		document.getElementById("userName").innerHTML = "Welcome to Paradise " + firstName + " " + lastName;
 	}
 }
 
@@ -234,7 +234,8 @@ function ContactSearch()
 				{
 					let contact = jsonObject.results[i];
 					if (i == 0)
-						contactList += "<table class='table'> <tr class='top-row'> <td>Name</td> <td>Phone Number</td> <td>Email</td> <td>edit/delete</td> </tr>";
+						contactList += "<table id='contactsTable'class='table'> <tr class='top-row'> <th class='name-column'>Name</th>"
+						+ "<th class='number-column'>Phone Number</th> <th class='email-column'>Email</th> <th class='button-column'>edit/delete</th> </tr>";
 					
 					contactList += "<tr class='data-rows'>" + "<td class='data-columns'>" + contact.Name + "</td>"+ "<td class='data-columns'>" 
 								+ contact.Phone + "</td>" + "<td class='data-columns'>" + contact.Email + "</td>";
@@ -261,27 +262,27 @@ function ContactSearch()
 }
 
 function ContactDelete(contactId) {
-  let data = { contactId: contactId };
-  let jsonPayload = JSON.stringify(data);
-
-  let url = urlBase + '/ContactDelete.' + extension;
-
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        let response = JSON.parse(xhr.responseText);
-        if (response.error === "") {
-          document.getElementById("ContactSearchResult").innerHTML = "Contact has been deleted";
-        } else {
-          document.getElementById("ContactSearchResult").innerHTML = response.error;
-        }
-      } else {
-        document.getElementById("ContactSearchResult").innerHTML = "Error: " + xhr.status;
-      }
-    }
-  };
-  xhr.send(jsonPayload);
-}
+	let data = { contactId: contactId };
+	let jsonPayload = JSON.stringify(data);
+  
+	let url = urlBase + '/ContactDelete.' + extension;
+  
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	xhr.onreadystatechange = function () {
+	  if (xhr.readyState === 4) {
+		if (xhr.status === 200) {
+		  let response = JSON.parse(xhr.responseText);
+		  if (response.error === "") {
+			document.getElementById("ContactSearchResult").innerHTML = "Contact has been deleted";
+		  } else {
+			document.getElementById("ContactSearchResult").innerHTML = response.error;
+		  }
+		} else {
+		  document.getElementById("ContactSearchResult").innerHTML = "Error: " + xhr.status;
+		}
+	  }
+	};
+	xhr.send(jsonPayload);
+  }
