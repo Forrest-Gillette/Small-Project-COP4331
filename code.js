@@ -230,19 +230,25 @@ function ContactSearch()
 				document.getElementById("ContactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
-				for( let i=0; i<jsonObject.results.length; i++ )
-				{
-					contactList += "Name: " + jsonObject.results[i].Name + "\t";
-					contactList += "Phone: " + jsonObject.results[i].Phone + "\t";
-					contactList += "Email: " + jsonObject.results[i].Email + "\t<button class='edit-btn' onClick='editContact()'>edit</button>" + "\t<button class='delete-btn' data-contact-id=jsonObject.results[i].ID onClick='ContactDelete()'>Delete</button>" + " <br>";
+				for (let i = 0; i < jsonObject.results.length; i++) {
+					let contact = jsonObject.results[i];
+					contactList += "Name: " + contact.Name + "\t";
+					contactList += "Phone: " + contact.Phone + "\t";
+					contactList += "Email: " + contact.Email + "\t";
+  					contactList += "<button class='edit-btn' onClick='editContact()'>edit</button>";
+  					contactList +=
+    					"<button class='delete-btn' data-contact-id='" +
+    					contact.ID +
+    					"' onClick='ContactDelete(" +
+    					contact.ID +
+    					")'>Delete</button>" +
+    					" <br>";
 
-
-					if( i < jsonObject.results.length - 1 )
-					{
-						contactList += "<br />\r\n";
-					}
+  					if (i < jsonObject.results.length - 1) {
+    					contactList += "<br />\r\n";
+  					}
 				}
-				
+
 				document.getElementsByTagName("p")[0].innerHTML = contactList;
 			}
 		};
@@ -273,4 +279,5 @@ function ContactDelete(contactId) {
   } catch (err) {
     document.getElementById("ContactSearchResult").innerHTML = err.message;
   }
+  location.reload();
 }
