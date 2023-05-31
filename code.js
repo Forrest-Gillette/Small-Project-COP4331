@@ -139,6 +139,40 @@ function addColor()
 	
 }
 
+function Register()
+{
+	let newUserUsername = document.getElementById("newUserLoginName").value;
+	let newUserPassword = document.getElementById("newUserLoginPassword").value;
+	let newUserFirstName = document.getElementById("newUserFirst").value;
+	let newUserLastName = document.getElementById("newUserLast").value;
+	document.getElementById("loginResult").innerHTML = "";
+
+	let tmp = {FirstName:newUserFirstName, LastName:newUserLastName, Login:newUserUsername, Password:newUserPassword};
+	let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/Register.' + extension;
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("loginResult").innerHTML = "Successfully registered";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("loginResult").innerHTML = err.message;
+	}
+	
+}
+
 function ContactCreate()
 {
 	let newContactName = document.getElementById("nameCreateText").value;
@@ -198,9 +232,11 @@ function ContactSearch()
 				
 				for( let i=0; i<jsonObject.results.length; i++ )
 				{
-					contactList += "Name: " + jsonObject.results[i].Name + "<br />";
-					contactList += "Phone: " + jsonObject.results[i].Phone + "<br />";
-					contactList += "Email: " + jsonObject.results[i].Email + "<br />";
+					contactList += "Name: " + jsonObject.results[i].Name + "\t";
+					contactList += "Phone: " + jsonObject.results[i].Phone + "\t";
+					contactList += "Email: " + jsonObject.results[i].Email + "\t<button class='edit-btn' onClick='editContact()'>edit</button>" + "\t<button class='delete-btn' data-contact-id=jsonObject.results[i].ID onClick='ContactDelete()'>Delete</button>" + " <br>";
+
+
 					if( i < jsonObject.results.length - 1 )
 					{
 						contactList += "<br />\r\n";
@@ -216,4 +252,25 @@ function ContactSearch()
 	{
 		document.getElementById("ContactSearchResult").innerHTML = err.message;
 	}	
+}
+
+function ContactDelete(contactId) {
+  let tmp = { contactId: contactId };
+  let jsonPayload = JSON.stringify(tmp);
+
+  let url = urlBase + '/ContactDelete.' + extension;
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("ContactDeleteResult").innerHTML = "Contact has been deleted";
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    document.getElementById("ContactDeleteResult").innerHTML = err.message;
+  }
 }
