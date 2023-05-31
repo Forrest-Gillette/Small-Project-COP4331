@@ -4,7 +4,7 @@
     <!-- .js and .css imports -->
     <head>
         <title>COP 4331 small Project</title>
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script type = "text/javascript" src = "js/md5.js"></script>
         <script type = "text/javascript" src = "js/code.js"></script>
 
@@ -23,7 +23,7 @@
 
         <!-- The Header -->
         <div class="header">
-                <span id="userName"></span><br />
+            <span id="userName"></span><br />
         </div>
 
         <!-- The Tab Bar -->
@@ -36,10 +36,11 @@
 
         <!-- The Home Tab -->
         <div id="Home" class="tab-content">
-            <input type = "text" id ="nameText" class="input-field" placeholder="search" required>
-            <button type = "button" id="searchContactButton" class = "buttons" onclick="ContactSearch();">Search</button>
+            <input type = "text" id ="nameText" class="input-field" tabindex="0" placeholder="search" required>
+            <button type = "button" id="searchContactButton" tabindex="1" class = "Search-button" onclick="ContactSearch();">
+            <i class="glyphicon glyphicon-search"></i>
+            </button>
             <p class="tab-para"><div id="ContactSearchResult"></div></p>
-            
 
             <script>
                 var enter = document.getElementById("nameText");
@@ -67,11 +68,10 @@
 
         <!-- The About Tab -->
         <div id="About" class="tab-content" style="display:none">
-            <!-- <p>Test2</p> -->
+            <p>Test2</p>
         </div>
 
         <!-- The Script for the Tabs -->
-        <!-- <div id="home" class="tab-content"></div> -->
         <script>
             function openTab(tabName)
             {
