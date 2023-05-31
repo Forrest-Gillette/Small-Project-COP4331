@@ -230,22 +230,22 @@ function ContactSearch()
 				document.getElementById("ContactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
-				for (let i = 0; i < jsonObject.results.length; i++) {
+				for (let i = 0; i < jsonObject.results.length; i++) 
+				{
 					let contact = jsonObject.results[i];
-					contactList += "Name: " + contact.Name + "\t";
-					contactList += "Phone: " + contact.Phone + "\t";
-					contactList += "Email: " + contact.Email + "\t";
-  					contactList += "<button class='edit-btn' onClick='editContact()'>edit</button>";
-  					contactList +=
-    					"<button class='delete-btn' data-contact-id='" +
-    					contact.ID +
-    					"' onClick='ContactDelete(" +
-    					contact.ID +
-    					")'>Delete</button>" +
-    					" <br>";
+					if (i == 0)
+						contactList += "<table class='table'> <tr class='top-row'> <td>Name</td> <td>Phone Number</td> <td>Email</td> <td>edit/delete</td> </tr>";
+					
+					contactList += "<tr class='data-rows'>" + "<td class='data-columns'>" + contact.Name + "</td>"+ "<td class='data-columns'>" 
+								+ contact.Phone + "</td>" + "<td class='data-columns'>" + contact.Email + "</td>";
+					contactList += "<td>" + "<button class='edit-btn' onClick='editContact()'>edit</button>";
+  					contactList += 
+					"<button class='delete-btn' data-contact-id='" + contact.ID + "' onClick='ContactDelete(" + contact.ID + ")'>Delete</button>"
+					+ "</td>" + "</tr><br>";
 
-  					if (i < jsonObject.results.length - 1) {
-    					contactList += "<br />\r\n";
+  					if (i < jsonObject.results.length - 1)
+					{
+    					contactList += "</table><br />\r\n";
   					}
 				}
 
