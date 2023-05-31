@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+body
+{
+    background-image: url("https://img.freepik.com/free-vector/zigzag-lines-pattern-black-background_1017-37483.jpg");
+    background-size: cover;
+}
+
+.header
+{
+    font-family: 'Play', sans-serif;
+    color: #ffffff;
+    background-color: #1f1f1f;
+    font-size: 20px;
+}
+
+.tab-bar
+{
+    overflow: hidden;
+    border:1px solid #ffffff;
+    background-color: #f1f1f1;
+}
+
+.tab-bar button
+{
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab-bar button:hover
+{
+    background-color: #ddd;
+}
+
+.tab-bar button.active
+{
+    background-color: #ccc;
+}
+
+.tab-content
+{
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #ccc;
+}
+
+.table
+{
+    font-family: 'Play', sans-serif;
+    font-size: 30px;
+    width: 80%;
+    margin:auto;
+}
+
+.cms-table-row
+{
+    display: flex;
+}
+
+.top-row
+{
+    color: #f1f1f1;
+    background-color: #000000;
+    margin: 2px;
+    padding: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.data-rows
+{
+    padding: 15px;
+}
+.cms-name
+{
+    flex-basis: 20%;
+}
+
+.cms-phone
+{
+    flex-basis: 20;
+}
+
+.cms-email
+{
+    flex-grow: 2;
+    flex-basis: 20%;
+}
+
+.cms-header
+{
+    background-color: #000000;
+    font-weight: bolder;
+}
+
+tab-para
+
+.edit-btn
+{
+    color: #3563c7;
+}
