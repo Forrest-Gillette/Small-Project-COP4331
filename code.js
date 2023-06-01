@@ -237,8 +237,8 @@ function ContactSearch()
 						contactList += "<table id='contactsTable'class='table'> <tr class='top-row'> <th class='name-column'>Name</th>"
 						+ "<th class='number-column'>Phone Number</th> <th class='email-column'>Email</th> <th class='button-column'>Edit / Delete</th> </tr>";
 					
-					contactList += "<tr class='data-rows' id='data-row" + contact.ID + "'>" + "<td class='data-columns'>" + contact.Name + "</td>"+ "<td class='data-columns'>" 
-								+ contact.Phone + "</td>" + "<td class='data-columns'>" + contact.Email + "</td>";
+					contactList += "<tr class='data-rows' id='data-row" + contact.ID + "'>" + "<td class='data-columns' id='name-text" + contact.ID + "'>" + contact.Name + "</td>"+ "<td class='data-columns' id='phone-text" + contact.ID + "'>" 
+								+ contact.Phone + "</td>" + "<td class='data-columns' id='email-text" + contact.ID + "'>" + contact.Email + "</td>";
 					contactList +=
 					"<td id='btn-columns" + contact.ID + "' >" + "<button class='edit-btn' data-contact-id=' " + contact.ID + "' " +
 					"onClick='editContact("+ contact.ID + ")''>" +
@@ -324,21 +324,46 @@ function editContact(contactId)
 	// })
 }
 
-function ContactUpdate(contactId)
-{
-	let data = {contactId: contactId}
-	var elms = document.getElementsByClassName("save-btn");
-	let editData = document.getElementById("data-row" + contactId);
+function ContactUpdate(contactId) {
+  let newName = document.getElementById("name-text" + contactId).textContent;
+  let newPhone = document.getElementById("phone-text" + contactId).textContent;
+  let newEmail = document.getElementById("email-text" + contactId).textContent;
 
-	Array.from(elms).forEach((x) =>{
+  let data = {
+    contactId: contactId,
+    newName: newName,
+    newPhone: newPhone,
+    newEmail: newEmail
+  };
 
-		if (x.style.display == "block") {
-			x.style.display = "none";
-		} else {
-			x.style.display = "block";
-		}
-	})
+  var elms = document.getElementsByClassName("save-btn");
+  let editData = document.getElementById("data-row" + contactId);
 
-	editData.contentEditable = false;
-	editData.style.backgroundColor = "#1d27b3";
+  Array.from(elms).forEach((x) => {
+    if (x.style.display == "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  });
+
+  editData.contentEditable = false;
+  editData.style.backgroundColor = "#1d27b3";
+
+  let url = urlBase + '/ContactUpdate.' + extension;
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("ContactCreateResult").innerHTML = "Contact has been successfully edited. Search again to show changes.";
+      }
+    };
+    xhr.send(JSON.stringify(data));
+  } catch (err) {
+    document.getElementById("ContactCreateResult").innerHTML = err.message;
+  }
 }
+
