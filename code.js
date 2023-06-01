@@ -230,26 +230,33 @@ function ContactSearch()
 				document.getElementById("ContactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
-				for (let i = 0; i < jsonObject.results.length; i++) 
+				if(jsonObject.results == undefined){
+					document.getElementById("ContactSearchResult").innerHTML = "No contacts found";
+				}
+				
+				else
 				{
-					let contact = jsonObject.results[i];
-					if (i == 0)
-						contactList += "<table id='contactsTable'class='table'> <tr class='top-row'> <th class='name-column'>Name</th>"
-						+ "<th class='number-column'>Phone Number</th> <th class='email-column'>Email</th> <th class='button-column'>Edit / Delete</th> </tr>";
-					
-					contactList += "<tr class='data-rows' id='data-row" + contact.ID + "'>" + "<td class='data-columns' id='name-text" + contact.ID + "'>" + contact.Name + "</td>"+ "<td class='data-columns' id='phone-text" + contact.ID + "'>" 
-								+ contact.Phone + "</td>" + "<td class='data-columns' id='email-text" + contact.ID + "'>" + contact.Email + "</td>";
-					contactList +=
-					"<td id='btn-columns" + contact.ID + "' >" + "<button class='edit-btn' data-contact-id=' " + contact.ID + "' " +
-					"onClick='editContact("+ contact.ID + ")''>" +
-					"<i class='fa fa-folder'></i></button>";
-  					contactList += 
-					"<button class='delete-btn' data-contact-id='" + contact.ID + "' onClick='ContactDelete(" + contact.ID + ")'><i class='fa fa-close'></i></button>"
-					+ "<button class='save-btn' id='update-btn'onClick='ContactUpdate(" + contact.ID + ")'><i class='fa fa-save'></i></button>" + "</td>" + "</tr><br>";
-  					// if (i < jsonObject.results.length - 1)
-					// {
-    				// 	contactList += "</table><br />\r\n";
-  					// }
+					for (let i = 0; i < jsonObject.results.length; i++) 
+					{
+						let contact = jsonObject.results[i];
+						if (i == 0)
+							contactList += "<table id='contactsTable'class='table'> <tr class='top-row'> <th class='name-column'>Name</th>"
+							+ "<th class='number-column'>Phone Number</th> <th class='email-column'>Email</th> <th class='button-column'>Edit / Delete</th> </tr>";
+						
+						contactList += "<tr class='data-rows' id='data-row" + contact.ID + "'>" + "<td class='data-columns' id='name-text" + contact.ID + "'>" + contact.Name + "</td>"+ 	"<td class='data-columns' id='phone-text" + contact.ID + "'>" 
+									+ contact.Phone + "</td>" + "<td class='data-columns' id='email-text" + contact.ID + "'>" + contact.Email + "</td>";
+						contactList +=
+						"<td id='btn-columns" + contact.ID + "' >" + "<button class='edit-btn' data-contact-id=' " + contact.ID + "' " +
+						"onClick='editContact("+ contact.ID + ")''>" +
+						"<i class='fa fa-folder'></i></button>";
+						contactList += 
+						"<button class='delete-btn' data-contact-id='" + contact.ID + "' onClick='ContactDelete(" + contact.ID + ")'><i class='fa fa-close'></i></button>"
+						+ "<button class='save-btn' id='update-btn'onClick='ContactUpdate(" + contact.ID + ")'><i class='fa fa-save'></i></button>" + "</td>" + "</tr><br>";
+						// if (i < jsonObject.results.length - 1)
+						// {
+						// 	contactList += "</table><br />\r\n";
+						// }
+					}
 				}
 					contactList += "</table>";
 
