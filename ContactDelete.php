@@ -11,9 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 $inData = getRequestInfo();
 $contactId = $inData["contactId"];
 
-print($contactId);
-print("hi");
-
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
@@ -56,7 +53,7 @@ function sendResultInfoAsJson($obj)
 function returnWithError($err)
 {
     if ($err === "") {
-        $retValue = '{"result":"Contact deleted successfully"}';
+        $retValue = '';
     } else {
         $retValue = '{"error":"' . $err . '"}';
     }

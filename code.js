@@ -272,30 +272,37 @@ function ContactSearch()
 }
 
 function ContactDelete(contactId) {
-	let data = { contactId: contactId };
-	let jsonPayload = JSON.stringify(data);
-  
-	let url = urlBase + '/ContactDelete.' + extension;
-  
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	xhr.onreadystatechange = function () {
-	  if (xhr.readyState === 4) {
-		if (xhr.status === 200) {
-		  let response = JSON.parse(xhr.responseText);
-		  if (response.error === "") {
-			document.getElementById("ContactSearchResult").innerHTML = "Contact has been deleted";
-		  } else {
-			document.getElementById("ContactSearchResult").innerHTML = response.error;
-		  }
-		} else {
-		  document.getElementById("ContactSearchResult").innerHTML = "Error: " + xhr.status;
-		}
-	  }
-	};
-	xhr.send(jsonPayload);
-  }
+  let data = { contactId: contactId };
+  let jsonPayload = JSON.stringify(data);
+
+  let url = urlBase + '/ContactDelete.' + extension;
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        console.log(xhr.responseText); // Log the response text
+        try {
+          let response = JSON.parse(xhr.responseText);
+          if (response.error === undefined) {
+            document.getElementById("ContactSearchResult").innerHTML = "Contact has been deleted";
+          } else {
+            document.getElementById("ContactSearchResult").innerHTML = response.error;
+          }
+        } catch (error) {
+          console.error(error); // Log any parsing error
+          document.getElementById("ContactSearchResult").innerHTML = "Error: Invalid JSON response";
+        }
+      } else {
+        document.getElementById("ContactSearchResult").innerHTML = "Error: " + xhr.status;
+      }
+    }
+  };
+  xhr.send(jsonPayload);
+}
+
 
 function editContact(contactId)
 {
