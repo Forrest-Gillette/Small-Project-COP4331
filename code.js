@@ -235,14 +235,17 @@ function ContactSearch()
 					let contact = jsonObject.results[i];
 					if (i == 0)
 						contactList += "<table id='contactsTable'class='table'> <tr class='top-row'> <th class='name-column'>Name</th>"
-						+ "<th class='number-column'>Phone Number</th> <th class='email-column'>Email</th> <th class='button-column'>edit/delete</th> </tr>";
+						+ "<th class='number-column'>Phone Number</th> <th class='email-column'>Email</th> <th class='button-column'>Edit / Delete</th> </tr>";
 					
-					contactList += "<tr class='data-rows'>" + "<td class='data-columns'>" + contact.Name + "</td>"+ "<td class='data-columns'>" 
+					contactList += "<tr class='data-rows' id='data-row" + contact.ID + "'>" + "<td class='data-columns'>" + contact.Name + "</td>"+ "<td class='data-columns'>" 
 								+ contact.Phone + "</td>" + "<td class='data-columns'>" + contact.Email + "</td>";
-					contactList += "<td>" + "<button class='edit-btn' onClick='editContact()'>edit</button>";
+					contactList +=
+					"<td id='btn-columns" + contact.ID + "' >" + "<button class='edit-btn' data-contact-id=' " + contact.ID + "' " +
+					"onClick='editContact("+ contact.ID + ")''>" +
+					"<i class='fa fa-folder'></i></button>";
   					contactList += 
-					"<button class='delete-btn' data-contact-id='" + contact.ID + "' onClick='ContactDelete(" + contact.ID + ")'>Delete</button>"
-					+ "</td>" + "</tr><br>";
+					"<button class='delete-btn' data-contact-id='" + contact.ID + "' onClick='ContactDelete(" + contact.ID + ")'><i class='fa fa-close'></i></button>"
+					+ "<button class='save-btn' id='update-btn'onClick='ContactUpdate(" + contact.ID + ")'><i class='fa fa-save'></i></button>" + "</td>" + "</tr><br>";
   					// if (i < jsonObject.results.length - 1)
 					// {
     				// 	contactList += "</table><br />\r\n";
@@ -286,3 +289,56 @@ function ContactDelete(contactId) {
 	};
 	xhr.send(jsonPayload);
   }
+
+function editContact(contactId)
+{
+	let data = {contactId: contactId};
+
+	var elms = document.getElementsByClassName("save-btn");
+	let editData = document.getElementById("data-row" + contactId);
+	let DontEdit = document.getElementById("btn-columns" + contactId);
+	// let backColor = document.getElementsById("data-columns")
+
+	Array.from(elms).forEach((x) =>{
+
+		if (x.style.display == "none") {
+			x.style.display = "block";
+		} else {
+			x.style.display = "none";
+		}
+	})
+
+	editData.contentEditable = true;
+	DontEdit.contentEditable = false;
+	editData.style.backgroundColor = "#1d27b38d"
+
+
+
+	// Array.from(elms).forEach((x) =>{
+
+	// 	if (x.style.display == "block") {
+	// 		x.style.display = "none";
+	// 	} else {
+	// 		x.style.display = "block";
+	// 	}
+	// })
+}
+
+function ContactUpdate(contactId)
+{
+	let data = {contactId: contactId}
+	var elms = document.getElementsByClassName("save-btn");
+	let editData = document.getElementById("data-row" + contactId);
+
+	Array.from(elms).forEach((x) =>{
+
+		if (x.style.display == "block") {
+			x.style.display = "none";
+		} else {
+			x.style.display = "block";
+		}
+	})
+
+	editData.contentEditable = false;
+	editData.style.backgroundColor = "#1d27b3";
+}
