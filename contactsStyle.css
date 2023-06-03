@@ -1,9 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Play&family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
 
 body
 {
     background-image: url("https://img.freepik.com/free-vector/zigzag-lines-pattern-black-background_1017-37483.jpg");
     background-size: cover;
+    margin-top: 0px;
+}
+
+h1
+{
+    font-family: 'Press Start 2P', cursive;
+    color: #ffffff;
+    position: relative;
+    /* height: 100%; */
+    padding: 20px;
+    font-size: 30px;
+    border: 25px solid #0f0000;
+    /* display: flex; */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 0px;
+    background-image: url(https://media2.giphy.com/media/TxVVB6PfWMjE4/200w.webp?cid=ecf05e47noz8n58b0wwdrspcdcj8a60igsqxwqnd4ztiepgc&ep=v1_gifs_search&rid=200w.webp&ct=g);
+
 }
 
 .header
@@ -12,6 +32,8 @@ body
     color: #ffffff;
     background-color: #1f1f1f;
     font-size: 20px;
+    /* adjusts the welcome message to start so background isn't visible before*/
+    margin-top: -10px;
 }
 
 .tab-bar
@@ -37,7 +59,7 @@ body
 
 .tab-bar button:hover
 {
-    background-color: #b10808;
+    background-color: hsl(197, 100%, 50%);
 }
 
 .tab-bar button.active
@@ -49,6 +71,8 @@ body
 {
     display: none;
     padding: 6px 12px;
+    /* margin: 100%; */
+    background-image: url(https://media2.giphy.com/media/TxVVB6PfWMjE4/200w.webp?cid=ecf05e47noz8n58b0wwdrspcdcj8a60igsqxwqnd4ztiepgc&ep=v1_gifs_search&rid=200w.webp&ct=g);
     border: 1px solid #ccc;
     border-top: none;
     background-color: #ccc;
@@ -57,6 +81,7 @@ body
 .delete-btn
 {
     color: #ff2c2c;
+    /* padding: 5px; */
 }
 
 .edit-btn
@@ -72,20 +97,22 @@ body
     width: 100%;
 }
 
-#contactsTable td, #contactsTable th
+#contactsTable tr, #contactsTable th
 {
     border: 1px solid #f1f1f1;
     padding: 8px;
+    color: white;
+    background-color: #1d27b3;
 } 
 
 #contactsTable tr:nth-child(even)
 {
-    background-color: #8f527d;
+    background-color: #7607c5;
 }
 
 #contactsTable tr:hover
 {
-    background-color: #b10808;
+    background-color: rgb(111, 157, 255);
 }
 
 #contactsTable th
@@ -103,13 +130,13 @@ body
     padding: 10px 0;
     margin: 25px 0;
     margin-left: 500px;
-    border-radius: 25px;
+    border-radius: 50px;
     border-left: 0;
     border-top: 0;
     border-right: 0;
     border-bottom: 1px solid #999;
     outline:#0f0000;
-    background: transparent;
+    background: rgba(rgb(206, 197, 197), green, blue, .8);
     box-shadow: 0 0 20px 9px #00000062;
     text-align: center;
 }
@@ -122,5 +149,60 @@ body
 
 .Search-button:hover
 {
-    background-color: #b10808;
+    background-color: rgb(111, 157, 255);
 }
+
+#ContactSearchResult
+{
+    color: white;
+    font-family: 'Press Start 2P', cursive;;
+}
+
+.buttons
+{
+    text-align: center;
+    position: relative;
+    margin-top: 1%;
+    margin-left: 42.5%;
+
+    padding: 10px;
+
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: 'Play', sans-serif;
+    background-color: #FFFFFF;
+
+}
+
+.buttons:hover
+{
+    background-color: hsl(197, 100%, 63%);
+    opacity: 100%;
+}
+
+.save-btn
+{
+    display: none;
+    color: green;
+}
+
+.rg-input-field
+{
+    width: 15%;
+    padding: 10px 20px;
+    margin: 15px 0;
+    margin-left: 500px;
+    border-radius: 50px;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #999;
+    outline:#0f0000;
+    background: rgba(rgb(206, 197, 197), green, blue, .8);
+    box-shadow: 0 0 20px 9px #00000062;
+    text-align: center;
+}
+/* .register-box
+{
+
+} */
